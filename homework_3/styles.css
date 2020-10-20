@@ -1,0 +1,35 @@
+div {
+    display:block;
+}
+
+.main {
+    width: 50%;
+    min-height: 500px;
+    background-color: black;
+    padding: 5px;
+}
+
+.top, .bottom {
+    min-height: 100px;
+    background-color: coral;
+    clear: both;
+}
+
+.col1, .col2, .col3, .col4 {
+    min-width: 25%;
+    min-height: 300px;
+    float: left;
+}
+
+.col1 {
+    background-color: crimson;
+}
+.col2 {
+    background-color: forestgreen;
+}
+.col3 {
+    background-color: cornflowerblue;
+}
+.col4 {
+    background-color: black;
+}
