@@ -1,0 +1,83 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 11px;
+}
+
+a, a:visited {
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a:hover {
+    color: dimgrey;
+}
+a.first {
+    color: #900022;
+}
+a.first:hover {
+    color: #901188;
+}
+
+.center {
+    text-align: center;
+}
+
+.thin {
+    font-weight: normal;
+}
+
+.big {
+    font-size: 28px;
+}
+
+.small {
+    font-size: 11px;
+}
+
+.transparent {
+    opacity: 0.5;
+}
+
+.header {
+    border-bottom: 1px solid #ccc;
+    min-height: 150px;
+}
+.top,.bottom {
+    display: flex;
+    justify-content: center;
+    margin: 12px 0 10px 0;
+    line-height: 1.4em;
+}
+.top-item {
+    margin: 3px 7px 0 7px;
+}
+
+.main {
+    background-color: #7e0019;
+    min-height: 90px;
+    margin-top: 10px;
+    display: flex;
+    text-transform: uppercase;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #fff;
+    font-weight: 800;
+}
+
+.main > .space > div {
+    padding: 2px;
+}
+
+.bottom-item {
+    margin: 0 7px 0 7px;
+}
+
+.bottom-item > a {
+    font-size: 12px;
+    font-weight: 800;
+}
