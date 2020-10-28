@@ -167,7 +167,24 @@ let person = firstName + ' ' + lastName + ' ' + middleName;
 ```
 
 > Взять задние 4 и 5 и применить его к ФИО всех членов своей семьи.
-Не зрозумiло, що потрiбно зробити. ???!!!
+Не зрозумiло, що потрiбно зробити.
+```javascript
+let firstNameF = 'Igor';
+let lastNameF = 'Koval';
+let middleNameF = 'Mihailovich';
+
+let firstNameM = 'Galyna';
+let lastNameM = 'Koval';
+let middleNameM = 'Petrivna';
+
+let firstNameS = 'Mariana';
+let lastNameS = 'Koval';
+let middleNameS = 'Igorivna';
+
+let father = firstNameF + ' ' + lastNameF + ' ' + middleNameF;
+let mother = firstNameM + ' ' + lastNameM + ' ' + middleNameM;
+let sister = firstNameS + ' ' + lastNameS + ' ' + middleNameS;
+```
 
 > при помощи prompt() получить 3 числа. Привести их к числовому типу при помощи +. вывести их в консоль.
 ```javascript
