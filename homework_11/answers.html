@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашнє завдання №11</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Домашнє завдання №11</h1>
+        <div>(https://github.com/GrayHead/js_demos/blob/master/this_one_folder_that_you_need/lesson7/tasks/task)</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">Создать произвольный елемент с id = text.  Используя JavaScript, сделайте так, чтобы при клике на кнопку исчезал элемент с id="text".</blockquote>
+        <h5>Answer:</h5>
+        <div id="text" class="alert alert-primary">Lorem ipsum dolor sit amet.</div>
+        <button onclick="hideDiv()">Hide Div</button>
+        <script>
+            let hideDiv = function() {
+                let divEl = document.querySelector('#text');
+                if (divEl) {
+                    divEl.style.display = 'none';
+                }
+            }
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">Создайте кнопку, при клике на которую, она будет скрывать сама себя.</blockquote>
+        <h5>Answer:</h5>
+        <button onclick="hideButton(this)">Hide Me</button>
+        <script>
+            let hideButton = function(elm) {
+                elm.style.display = 'none';
+            }
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            створити інпут який приймає вік людини та кнопку яка підтверджує дію.При натисканні на кнопку зчитати інформацію з інпуту та перевірити вік чи меньше він ніж 18, та повідомити про це користувача
+        </blockquote>
+        <h5>Answer:</h5>
+        <input id="age" name="age" value="" placeholder="Please enter your age" />
+        <button onclick="checkAge()">Check Age</button>
+        <script>
+            let checkAge = function() {
+                let ageInput = document.querySelector('#age');
+                if (ageInput) {
+                    if (!ageInput.value) {
+                        alert('Please enter some value.');
+                    }
+                    else if (ageInput.value >= 18) {
+                        alert('You are older than 18.');
+                    } else {
+                        alert('You are younger than 18.');
+                    }
+                }
+            }
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            Создайте меню, которое раскрывается/сворачивается при клике
+        </blockquote>
+        <h5>Answer:</h5>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" onclick="return toggleMenu('menu')">Menu</a>
+                    <div class="dropdown-menu" id="menu">
+                        <a class="dropdown-item" href="#">Link #1</a>
+                        <a class="dropdown-item" href="#">Link #2</a>
+                        <a class="dropdown-item" href="#">Link #3</a>
+                        <a class="dropdown-item" href="#">Link #4</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <script>
+            let toggleMenu = function(menuId) {
+                let menu = document.querySelector('#'+menuId);
+                if (menu) {
+                    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+                }
+                return false;
+            };
+            (function() {
+                let menu = document.querySelector('#menu');
+                if (menu) {
+                    menu.style.display = 'none';
+                }
+            })();
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Создать список комментариев , пример объекта коментария - {title : 'lorem', body:'lorem ipsum dolo sit ameti'}.</p>
+            <p>Вывести список комментариев в документ, каждый в своем блоке.</p>
+            <p>Добавьте каждому комментарию по кнопке для сворачивания его body.</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <div class="card">
+            <ul id="comments-list" class="list-group list-group-flush"></ul>
+        </div>
+        <script>
+            let comments = [
+                {title: 'Best solution', body: 'This is the best solution I\'ve seen.'},
+                {title: 'Good choice', body: 'Good choice. Recommend.'},
+                {title: 'Lorem ipsum', body: 'Lorem ipsum dolor sit amet.'}
+            ];
+
+            let hideComment = function(id) {
+                let commentBlock = document.querySelector('#'+ id);
+                if (commentBlock) {
+                    commentBlock.style.display = 'none';
+                }
+            };
+
+            (function(){
+                let ul = document.querySelector('#comments-list');
+                if (ul) {
+                    for (const i in comments) {
+                        let commentLi = document.createElement('li');
+                        commentLi.setAttribute('id', 'comment' + i);
+                        commentLi.setAttribute('class', 'list-group-item');
+                        commentLi.innerHTML = `<div><strong>${comments[i].title}:</strong></div><div id="comment-body-${i}">${comments[i].body}</div>`;
+
+                        let hideBtn = document.createElement('button');
+                        hideBtn.innerText = 'Hide Comment';
+                        hideBtn.onclick = () => {hideComment('comment-body-' + i);}
+
+                        commentLi.appendChild(hideBtn);
+                        ul.appendChild(commentLi);
+                    }
+                }
+            })();
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>створити 2 форми  по 2 інпути в кожній. ствоирити кнопку при кліку на яку считується та виводиться на консоль інформація з цих 2х форм.</p>
+            <p>Кнопка повинна лежати за межами форм (Щоб уникнути  перезавантаження сторінки)</p>
+            <p>Доступ до інпутів через Forms API. Отже дайте формі та інпутам всі необхідні атрибути.</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <div class="card">
+            <form id="form1" method="post">
+                <label for="form1_field1">Form #1</label>
+                <input type="text" name="form1_field1" id="form1_field1" value="" placeholder="Field #1" />
+                <input type="text" name="form1_field2" id="form1_field2" value="" placeholder="Field #2" />
+            </form>
+            <form id="form2" method="post">
+                <label for="form2_field1">Form #2</label>
+                <input type="text" name="form2_field1" id="form2_field1" value="" placeholder="Field #1" />
+                <input type="text" name="form2_field2" id="form2_field2" value="" placeholder="Field #2" />
+            </form>
+        </div>
+        <button onclick="logFormsValues()">Log Forms Values</button>
+        <script>
+            let logFormsValues = function() {
+                console.log(
+                    document.forms['form1'].elements['form1_field1'].value,
+                    document.forms['form1'].elements['form1_field2'].value,
+                    document.forms['form2'].elements['form2_field1'].value,
+                    document.forms['form2'].elements['form2_field2'].value
+                );
+            }
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Створити функцію, яка генерує таблицю.</p>
+            <p>Перший аргумент визначає кількість строк.</p>
+            <p>Другий параметр визначає кліькіть ячеєк в кожній строці.</p>
+            <p>Третій параметр визначає елемент в який потрібно таблицю додати.</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <div class="card" id="add-table-1">This div have ID "add-table-1"</div>
+        <button onclick="CreateTable1Click()">Create Table</button>
+        <script>
+            let CreateTable1 = function(rows, columns, parentId) {
+                let parentElm = document.querySelector('#'+ parentId);
+                if (parentElm) {
+                    let table = document.createElement('table');
+                    for (let i = 0; i < rows; i++) {
+                        let tr = document.createElement('tr');
+                        for (let y = 0; y < columns; y++) {
+                            let td = document.createElement('td');
+                            td.innerText = 'Row '+ i +', cell '+ y;
+                            tr.appendChild(td);
+                        }
+
+                        table.appendChild(tr);
+                    }
+
+                    parentElm.appendChild(table);
+                }
+            }
+
+            let CreateTable1Click = function() {
+                let rows = prompt('How many rows should have table?');
+                let columns = prompt('How many columns should have table?');
+                let parentId = prompt('Into which element add a table?');
+
+                CreateTable1(rows, columns, parentId);
+            }
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Створити 3 инпута та кнопку. Один визначає кількість рядків, другий - кількість ячеєк, третій вміст ячеєк.</p>
+            <p>При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <div>
+            <input type="text" name="rows" id="create-table-rows" value="" placeholder="Number of rows" />
+            <input type="text" name="columns" id="create-table-columns" value="" placeholder="Number of columns" />
+            <input type="text" name="columns" id="create-table-cell-content" value="" placeholder="Enter a cells content" />
+        </div>
+        <button onclick="CreateTable2()">Create Table</button>
+        <div class="card" id="add-table-2"></div>
+        <script>
+            let CreateTable2 = function() {
+                let rows = document.querySelector('#create-table-rows').value;
+                let columns = document.querySelector('#create-table-columns').value;
+                let content = document.querySelector('#create-table-cell-content').value;
+
+                let parentElm = document.querySelector('#add-table-2');
+                if (parentElm) {
+                    let table = document.createElement('table');
+                    for (let i = 0; i < rows; i++) {
+                        let tr = document.createElement('tr');
+                        for (let y = 0; y < columns; y++) {
+                            let td = document.createElement('td');
+                            td.innerText = content;
+                            tr.appendChild(td);
+                        }
+
+                        table.appendChild(tr);
+                    }
+
+                    parentElm.appendChild(table);
+                }
+            }
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Напишите «Карусель» – ленту изображений, которую можно листать влево-вправо нажатием на стрелочки.</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <div class="card text-center">
+            <div class="carousel slide w-50">
+                <a class="carousel-control-prev" href="#" onclick="return SlideImages('left')">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <ul class="list-inline carousel-inner">
+                    <li class="list-inline-item"><img src="https://mobirise.com/bootstrap-carousel/assets2/images/aleks-dahlberg-223434-2000x1500-800x600.jpg" border="0" /></li>
+                    <li class="list-inline-item d-none"><img src="https://mobirise.com/bootstrap-carousel/assets2/images/andrew-ridley-190241-2000x1500-800x600.jpg" border="0" /></li>
+                    <li class="list-inline-item d-none"><img src="https://mobirise.com/bootstrap-carousel/assets2/images/jamie-street-97624-2000x1500-800x600.jpg" border="0" /></li>
+                    <li class="list-inline-item d-none"><img src="https://mobirise.com/bootstrap-carousel/assets2/images/manu-schwendener-39728-2000x1500-800x600.jpg" border="0" /></li>
+                    <li class="list-inline-item d-none"><img src="https://mobirise.com/bootstrap-carousel/assets2/images/steve-halama-272592-2000x1500-800x600.jpg" border="0" /></li>
+                </ul>
+                <a class="carousel-control-next" href="#" onclick="return SlideImages('right')">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+        <script>
+            let SlideImages = function(direction) {
+                let sliderImages = document.querySelectorAll('.list-inline-item');
+
+                for (let i = 0; i < sliderImages.length; i++) {
+                    if (sliderImages[i].className.indexOf('d-none') === -1) {
+                        let newIndex = direction === 'left' ? i - 1 : i + 1;
+                        if (!sliderImages[newIndex]) {
+                            if (newIndex < 0) {
+                                newIndex = sliderImages.length - 1;
+                            } else {
+                                newIndex = 0
+                            }
+                        }
+
+                        sliderImages[i].classList.add('d-none');
+                        sliderImages[newIndex].classList.remove('d-none');
+                        break;
+                    }
+                }
+
+                return false;
+            }
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Сворити масив не цензурних слів.</p>
+            <p>Сворити інпут текстового типу.</p>
+            <p>Якщо людина вводить слово і воно міститься в масиві не цензурних слів - кинути алерт з попередженням.</p>
+            <p>Перевірку робити при натисканні на кнопку</p>
+            <code>let blackList = ['fuck', 'bastard', 'bitch', 'black'];</code>
+        </blockquote>
+        <h5>Answer:</h5>
+        <input id="blocked_word" name="blocked_word" value="" placeholder="Please enter the text" />
+        <button onclick="checkText()">Check Text</button>
+        <script>
+            let blackList = ['fuck', 'bastard', 'bitch', 'black'];
+
+            let checkText = function() {
+                let textInput = document.querySelector('#blocked_word');
+                if (textInput) {
+                    for (const word of blackList) {
+                        if (textInput.value.indexOf(word) !== -1) {
+                            alert(`Word "${word}" is blocked!`);
+                            break;
+                        }
+                    }
+                }
+            }
+        </script>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>взять массив пользователей</p>
+            <code>
+                let usersWithAddress = [
+                    {id:1,name: 'vasya', age: 31, status: false, address: {city: 'Lviv', street: 'Shevchenko', number: 16}},
+                    {id:2,name: 'petya', age: 30, status: true, address: {city: 'Kyiv', street: 'Shevchenko', number: 1}},
+                    {id:3,name: 'kolya', age: 29, status: true, address: {city: 'Lviv', street: 'Shevchenko', number: 121}},
+                    {id:4,name: 'olya', age: 28, status: false, address: {city: 'Ternopil', street: 'Shevchenko', number: 90}},
+                    {id:5,name: 'max', age: 30, status: true, address: {city: 'Lviv', street: 'Shevchenko', number: 115}},
+                    {id:6,name: 'anya', age: 31, status: false, address: {city: 'Kyiv', street: 'Shevchenko', number: 2}},
+                    {id:7,name: 'oleg', age: 28, status: false, address: {city: 'Ternopil', street: 'Shevchenko', number: 22}},
+                    {id:8,name: 'andrey', age: 29, status: true, address: {city: 'Lviv', street: 'Shevchenko', number: 43}},
+                    {id:9,name: 'masha', age: 30, status: true, address: {city: 'Kyiv', street: 'Shevchenko', number: 12}},
+                    {id:10,name: 'olya', age: 31, status: false, address: {city: 'Lviv', street: 'Shevchenko', number: 16}},
+                    {id:11,name: 'max', age: 31, status: true, address: {city: 'Ternopil', street: 'Shevchenko', number: 121}}
+                ];
+            </code>
+            <p>Создать три чекбокса. Каждый из них активирует фильтр для вышеуказаного массива. Фильтры могут работать как вместе так и по отдельности.</p>
+            <p>1й - отфильтровывает пользователей со статусом false (осталяет со статусом false)</p>
+            <p>2й - оставляет старше 29 лет включительно</p>
+            <p>3й - оставляет тех у кого город киев</p>
+            <p>Данные выводить в документ</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <div class="card" id="filtered_users"></div>
+        <div>
+            <label for="filter_status">Status</label>
+            <input type="checkbox" name="filter_status" id="filter_status" value="1" onclick="showFilteredUsers()"/>
+        </div>
+        <div>
+            <label for="filter_age">Age</label>
+            <input type="checkbox" name="filter_age" id="filter_age" value="1" onclick="showFilteredUsers()" />
+        </div>
+        <div>
+            <label for="filter_city">City</label>
+            <input type="checkbox" name="filter_city" id="filter_city" value="1" onclick="showFilteredUsers()" />
+        </div>
+        <script>
+            let usersWithAddress = [
+                {id:1,name: 'vasya', age: 31, status: false, address: {city: 'Lviv', street: 'Shevchenko', number: 16}},
+                {id:2,name: 'petya', age: 30, status: true, address: {city: 'Kyiv', street: 'Shevchenko', number: 1}},
+                {id:3,name: 'kolya', age: 29, status: true, address: {city: 'Lviv', street: 'Shevchenko', number: 121}},
+                {id:4,name: 'olya', age: 28, status: false, address: {city: 'Ternopil', street: 'Shevchenko', number: 90}},
+                {id:5,name: 'max', age: 30, status: true, address: {city: 'Lviv', street: 'Shevchenko', number: 115}},
+                {id:6,name: 'anya', age: 31, status: false, address: {city: 'Kyiv', street: 'Shevchenko', number: 2}},
+                {id:7,name: 'oleg', age: 28, status: false, address: {city: 'Ternopil', street: 'Shevchenko', number: 22}},
+                {id:8,name: 'andrey', age: 29, status: true, address: {city: 'Lviv', street: 'Shevchenko', number: 43}},
+                {id:9,name: 'masha', age: 30, status: true, address: {city: 'Kyiv', street: 'Shevchenko', number: 12}},
+                {id:10,name: 'olya', age: 31, status: false, address: {city: 'Lviv', street: 'Shevchenko', number: 16}},
+                {id:11,name: 'max', age: 31, status: true, address: {city: 'Ternopil', street: 'Shevchenko', number: 121}}
+            ];
+
+            let showFilteredUsers = function() {
+                let filterStatus = document.querySelector('#filter_status');
+                let filterAge = document.querySelector('#filter_age');
+                let filterCity = document.querySelector('#filter_city');
+
+                let filteredUsers = [...usersWithAddress];
+
+                if (filterStatus.checked === true) {
+                    filteredUsers = filteredUsers.filter(user => user.status === false);
+                }
+                if (filterAge.checked === true) {
+                    filteredUsers = filteredUsers.filter(user => user.age >= 29);
+                }
+                if (filterCity.checked === true) {
+                    filteredUsers = filteredUsers.filter(user => user.address.city === 'Kyiv');
+                }
+
+                let div = document.querySelector('#filtered_users');
+                if (div) {
+                    div.innerHTML = '';
+
+                    for (let user of filteredUsers) {
+                        div.innerHTML += `<div>Name: ${user.name} - Age: ${user.age} - Address: ${user.address.city}, ${user.address.street} ${user.address.number}</div>`;
+                    }
+                }
+            };
+
+            (function(){
+                showFilteredUsers();
+            })();
+        </script>
+    </div>
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+        14.11.2020, Д.З. №11
+    </div>
+</div>
+</body>
+</html>
