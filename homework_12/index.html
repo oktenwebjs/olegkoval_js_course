@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашнє завдання #12</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Домашнє завдання №12</h1>
+        <div>(https://github.com/GrayHead/js_demos/blob/master/this_one_folder_that_you_need/lesson8/tasks/task.txt)</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Дана textarea.</p>
+            <p>В неё вводится текст.</p>
+            <p>Сделайте так, чтобы после захода на эту страницу через некоторое время, введенный текст остался в textarea.</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <textarea id="textarea_1" rows="3" cols="100" onkeyup="text1SaveText()"></textarea>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Дана форма с инпутами, текстареа, чекбоксами, радио кнопочками, селектами и тп.</p>
+            <p>Пользователь вводит какие-то данные и закрывает страницу (не факт, что он заполнил всю форму).</p>
+            <p>Сделайте так, чтобы при следующем заходе на страницу введенные им ранее данные стояли на своих местах.</p>
+            <p>Сделайте ваш скрипт как можно более универсальным.</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <form name="form_1" onchange="form1SaveData()" onkeyup="form1SaveData()">
+            <input id="form_1_input_1" name="form_1_input_1" value="" placeholder="Input any text" /><br/>
+            <textarea id="form_1_textarea_1" name="form_1_textarea_1" rows="3" cols="100" placeholder="Input any text"></textarea><br/>
+            <select id="form_1_select_1"name="form_1_select_1">
+                <option value="">Please select a value</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br/>
+            <input type="checkbox" id="form_1_checkbox_1" name="form_1_checkbox_1" value="1" />
+            <input type="checkbox" id="form_1_checkbox_2" name="form_1_checkbox_2" value="2" />
+            <input type="checkbox" id="form_1_checkbox_3" name="form_1_checkbox_3" value="3" /><br/>
+            <input type="radio" id="form_1_radio_1" name="form_1_radio_1" value="1" />
+            <input type="radio" id="form_1_radio_2" name="form_1_radio_1" value="2" />
+            <input type="radio" id="form_1_radio_3" name="form_1_radio_1" value="3" />
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Дан текстареа. В него можно ввести данные, нажать кнопку "сохранить" и они "фикисруются" (в хранилище), затем поредактировать их, затем еще поредактировать и возможно еще.....</p>
+            <p>Требование : хранить историю своих изменений (даже после перезагрузки страницы).</p>
+            <p>Сверху над текстареа должны появится стрелочки, с помощью которых можно перемещаться по истории (не забудьте!чекпоинт истории - нажатеи кнопки сохранить).</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <button onclick="textarea3Goto('back')"><< Back</button> <button onclick="textarea3Goto('forward')">Forward >></button><br/>
+        <textarea id="textarea_3" rows="3" cols="100" onkeyup=""></textarea><br/>
+        <button onclick="saveChangesTextarea3()">Save Changes</button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Реализуйте записную книгу, хранящую данные в локальном хранилище.</p>
+            <p>Данные которые надо сохранять : ФИО, номер, почта, фирма, отдел, день рождения</p>
+            <p>Данные вводить через соответсвующую форму.</p>
+            <p>Каждому контакту добавить кнопку для удаления контакта.</p>
+            <p>Каждому контакту добавить кнопку редактироваиня. При нажати на нее появляется форма, в которой есть все необходимые инпуты для редактирования, которые уже заполнены данными объекта</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <div id="notes">
+            <button onclick="ShowContactForm()">Add Contact</button>
+            <div id="contact_form">
+                <form name="contact_form" onsubmit="return SaveContact()">
+                    <input type="hidden" name="contactKey" value="">
+                    <input type="text" name="name" value="" placeholder="Enter your Name" required="required"/><br/>
+                    <input type="phone" name="phone" value="" placeholder="Enter your Phone number" required="required"/><br/>
+                    <input type="email" name="email" value="" placeholder="Enter your Email" required="required"/><br/>
+                    <input type="text" name="company" value="" placeholder="Enter your Company" required="required"/><br/>
+                    <input type="text" name="department" value="" placeholder="Enter your Department" required="required"/><br/>
+                    <input type="date" name="birthdate" value="" placeholder="Enter your birth date" required="required"/><br/>
+                    <button onclick="HideContactForm()">Cancel</button> <button type="submit">Save Contact</button>
+                </form>
+            </div>
+            <div id="contacts" class="card w-50 mt-1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+        22.11.2020, Д.З. №12
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
