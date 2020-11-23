@@ -131,6 +131,7 @@ let HideContactForm = () => {
 
     let contactForm = document.forms['contact_form'];
     if (contactForm) {
+        contactForm['contactKey'].value = '';
         contactForm.reset();
     }
 }
