@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Homework #14</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Домашнє завдання №14</h1>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Task:</h5>
+        <blockquote class="blockquote p-3 mb-2 bg-light text-dark">
+            <p>Реалізувати друкарську машинку.</p>
+            <p>У вас є текст "Hello World".</p>
+            <p>Ваша функція має друкувати цей текст по 1 симоволу в браузері.</p>
+            <p>КОЖНА нова буква має бути з РАНДОМНОЮ заутримкою від 0.1 до 1 секунди.</p>
+            <p>Цим самим ви маєте симулювати написання даного тексту юзером.</p>
+            <p>Приклад: "Hello"</p>
+            <p>Затримки:</p>
+            <p>H (затримка 0.6)</p>
+            <p>e (затримка 0.1)</p>
+            <p>l (затримка 0.3)</p>
+            <p>l (затримка 0.7)</p>
+            <p>о (затримка 1)</p>
+        </blockquote>
+        <h5>Answer:</h5>
+        <input type="text" id="text_to_print" value="Hello World" placeholder="Enter text"> <button onclick="printText()">Run a Text Printer</button>
+        <div class="card" id="printer"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+        29.11.2020, Д.З. №14
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
