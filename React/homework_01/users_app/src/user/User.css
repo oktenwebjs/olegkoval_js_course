@@ -1,0 +1,8 @@
+.row {
+    max-width: 350px;
+    line-height: 1.25em;
+    border-bottom: 1px solid #cccccc;
+}
+button {
+    float: right;
+}
