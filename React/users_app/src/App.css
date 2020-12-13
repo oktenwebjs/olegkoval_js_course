@@ -1,0 +1,6 @@
+.page-container {
+    height: 100%;
+}
+.h100 {
+    height: calc(100% - 70px - 1rem);
+}

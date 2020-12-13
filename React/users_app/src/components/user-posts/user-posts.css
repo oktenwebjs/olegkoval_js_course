@@ -1,0 +1,20 @@
+.user-posts-container {
+    width: 100%;
+}
+.user-posts {
+    width:80%;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.user-posts .title {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+.user-posts .body {
+    font-size: 1em;
+    text-transform: capitalize;
+}

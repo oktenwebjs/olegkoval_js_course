@@ -1,0 +1,10 @@
+.user-item {
+    display: flex;
+    align-items: center;
+}
+.user-item-name {
+    flex: 2;
+}
+.user-item-button {
+    padding: 2px;
+}

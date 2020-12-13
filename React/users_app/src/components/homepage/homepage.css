@@ -1,0 +1,8 @@
+.homepage {
+    display: block;
+    text-align: center;
+    vertical-align: center;
+    background: url("/logo512.png") center no-repeat;
+    width: 100%;
+    height: 100%;
+}

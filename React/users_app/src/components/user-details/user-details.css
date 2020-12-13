@@ -1,0 +1,23 @@
+.user-details {
+    width:70%;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 20px;
+}
+.user-details .name {
+    font-weight: bold;
+    font-size: 2em;
+}
+.user-details .username {
+    font-size: 1em;
+    border-bottom: 1px solid #cccccc;
+}
+.user-details .phone, .user-details .email, .user-details .website {
+    font-size: 1.5em;
+}
+.user-details .phone span, .user-details .email span, .user-details .website span {
+    font-weight: bold;
+}
+.user-details .phone, .user-details .email {
+    border-bottom: 1px solid #cccccc;
+}
