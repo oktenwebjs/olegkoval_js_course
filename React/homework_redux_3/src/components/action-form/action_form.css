@@ -1,0 +1,20 @@
+.action-form {
+    display: flex;
+    margin: 10px 30px;
+    justify-content: space-between;
+}
+
+.action-form label, .action-form input, .action-form button {
+    margin: 0 3px;
+    flex: 1;
+}
+
+.action-form button {
+    flex: 2;
+}
+
+.action-form label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}

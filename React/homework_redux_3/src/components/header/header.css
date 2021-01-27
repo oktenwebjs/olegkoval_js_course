@@ -1,0 +1,19 @@
+.header {
+    font-size: 1.5em;
+    font-weight: bold;
+    align-content: center;
+    margin: 5px auto 5px;
+}
+
+.header h3 {
+    margin: 0 auto 5px;
+}
+
+.current-value {
+    display: block;
+    width:70%;
+    border: 1px solid #282c34;
+    background-color: #cccccc;
+    margin: auto;
+    border-radius: 5px;
+}
