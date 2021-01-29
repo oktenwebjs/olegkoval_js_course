@@ -5,29 +5,22 @@ import {calcAddNumber} from "../../redux";
 import './action_form.css';
 
 export const ActionForm = () => {
-    const [number, setNumber] = useState(0);
     const [fieldValue, setFieldValue] = useState('');
 
     const dispatch = useDispatch();
 
     const addNumber = () => {
+        const number = Number.parseInt(fieldValue, 10);
+        dispatch(calcAddNumber(!Number.isNaN(number) ? number : 0));
         setFieldValue('');
-        dispatch(calcAddNumber(number));
-        setNumber(0);
-    }
-
-    const onNumberChange = (event) => {
-        setFieldValue(event.target.value);
-        const number = Number.parseInt(event.target.value, 10);
-        setNumber(!Number.isNaN(number) ? number : 0);
     }
 
     return (
         <div className="action-form">
             <label htmlFor="number-field">Число:</label>
-            <input key="number-field" id="number-field" value={fieldValue} onChange={event => onNumberChange(event)}/>
+            <input key="number-field" id="number-field" value={fieldValue} onChange={event => setFieldValue(event.target.value)}/>
             <button
-                onClick={() => addNumber(number)}
+                onClick={() => addNumber()}
                 className="action-button">
                 Submit
             </button>

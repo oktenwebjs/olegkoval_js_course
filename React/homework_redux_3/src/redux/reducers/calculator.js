@@ -1,7 +1,8 @@
 import {ADD_NUMBER, RESET} from "../action-types";
 
 const initialState = {
-    calculator: 0
+    calculator: 0,
+    action_buttons: [1, -1, 100, -100, 0]
 }
 
 export default (state = initialState, action) => {
