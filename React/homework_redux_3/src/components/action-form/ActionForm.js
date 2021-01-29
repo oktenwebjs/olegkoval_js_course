@@ -10,17 +10,26 @@ export const ActionForm = () => {
     const dispatch = useDispatch();
 
     const addNumber = () => {
-        const number = Number.parseInt(fieldValue, 10);
-        dispatch(calcAddNumber(!Number.isNaN(number) ? number : 0));
+        // const number = Number.parseInt(fieldValue, 10);
+        // dispatch(calcAddNumber(!Number.isNaN(number) ? number : 0));
+
+
+        dispatch(calcAddNumber(!isNaN(+fieldValue) ? +fieldValue : 0));
         setFieldValue('');
     }
 
     return (
         <div className="action-form">
             <label htmlFor="number-field">Число:</label>
-            <input key="number-field" id="number-field" value={fieldValue} onChange={event => setFieldValue(event.target.value)}/>
+            <input
+                key="number-field"
+                id="number-field"
+                value={fieldValue}
+                onChange={({target:{value}} )=>
+                    setFieldValue(value)}
+            />
             <button
-                onClick={() => addNumber()}
+                onClick={addNumber}
                 className="action-button">
                 Submit
             </button>

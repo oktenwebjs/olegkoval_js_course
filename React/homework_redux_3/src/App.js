@@ -10,6 +10,7 @@ function App() {
     return (
         <div className="App">
             <Header/>
+            {/*//todo взять ці діви і створити компонету*/}
             <div>
                 {
                     action_buttons.map(value => <ActionButton key={'key' + value} number={value}/>)
