@@ -10,10 +10,6 @@ export const ActionForm = () => {
     const dispatch = useDispatch();
 
     const addNumber = () => {
-        // const number = Number.parseInt(fieldValue, 10);
-        // dispatch(calcAddNumber(!Number.isNaN(number) ? number : 0));
-
-
         dispatch(calcAddNumber(!isNaN(+fieldValue) ? +fieldValue : 0));
         setFieldValue('');
     }
