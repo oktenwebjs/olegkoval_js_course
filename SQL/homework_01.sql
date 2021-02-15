@@ -21,7 +21,7 @@ SELECT client.* FROM client INNER JOIN department ON client.department_iddepartm
 SELECT firstname, lastname, GROUP_CONCAT(passport) FROM client GROUP BY firstname, lastname;
 
 -- 8. +Вивести дані про клієнтів, які мають кредит більше ніж на 5000 тисяч гривень.
-SELECT c.* as not_returned FROM client c INNER JOIN application a ON c.idclient = a.client_idclient WHERE a.creditstate = 'Not returned' GROUP BY a.client_idclient, c.idclient HAVING SUM(a.sum) > 5000;
+SELECT c.* FROM client c INNER JOIN application a ON c.idclient = a.client_idclient WHERE a.creditstate = 'Not returned' GROUP BY a.client_idclient, c.idclient HAVING SUM(a.sum) > 5000;
 
 -- 9. +Порахувати кількість клієнтів усіх відділень та лише львівських відділень.
 SELECT COUNT(idclient) FROM client;
