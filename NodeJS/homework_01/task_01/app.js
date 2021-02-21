@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const femaleFolderPath = path.resolve(__dirname, '1800');
-const maleFolderPath = path.resolve(__dirname, '2000');
+const femaleFolderPath = path.join(__dirname, '1800');
+const maleFolderPath = path.join(__dirname, '2000');
 
 const moveGenderFiles = (startFolder, endFolder, gender) => {
     fs.readdir(startFolder, (err, filesList) => {
@@ -12,7 +12,7 @@ const moveGenderFiles = (startFolder, endFolder, gender) => {
         }
 
         filesList.forEach(fileName => {
-            fs.readFile(path.resolve(startFolder, fileName), (err, data) => {
+            fs.readFile(path.join(startFolder, fileName), (err, data) => {
                 if (err) {
                     console.log('Can not read file: '+ fileName);
                     return;
@@ -20,7 +20,7 @@ const moveGenderFiles = (startFolder, endFolder, gender) => {
 
                 const personData = JSON.parse(data.toString());
                 if (personData.gender === gender) {
-                    fs.rename(path.resolve(startFolder, fileName), path.resolve(endFolder, fileName), err => {
+                    fs.rename(path.join(startFolder, fileName), path.join(endFolder, fileName), err => {
                         if (err) {
                             console.log('Can not move file: '+ fileName);
                         }

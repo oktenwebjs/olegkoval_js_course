@@ -9,20 +9,20 @@ const moveFromTreeToFlat = (treeFolder, flatFolder) => {
         }
 
         childrenList.forEach(childElem => {
-           fs.stat(path.resolve(treeFolder, childElem), (err, stats) => {
+           fs.stat(path.join(treeFolder, childElem), (err, stats) => {
               if (stats.isFile()) {
-                  fs.rename(path.resolve(treeFolder, childElem), path.resolve(flatFolder, childElem), err1 => {
+                  fs.rename(path.join(treeFolder, childElem), path.join(flatFolder, childElem), err1 => {
                       if (err1) {
                           console.log('Can not move file: '+ childElem);
                           return;
                       }
                   });
               } else {
-                  moveFromTreeToFlat(path.resolve(treeFolder, childElem), flatFolder);
+                  moveFromTreeToFlat(path.join(treeFolder, childElem), flatFolder);
               }
            });
         });
     })
 }
 
-moveFromTreeToFlat(path.resolve(__dirname, 'tree'), path.resolve(__dirname, 'flat'));
+moveFromTreeToFlat(path.join(__dirname, 'tree'), path.join(__dirname, 'flat'));
