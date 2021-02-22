@@ -28,13 +28,7 @@ class User {
     }
 
     _isUserExists(email = '') {
-        for(const user of this._users) {
-            if (user.email === email) {
-                return user;
-            }
-        }
-
-        return false;
+        return this._users.find(user => user.email === email);
     }
 
     getAllUsers() {
@@ -73,13 +67,7 @@ class User {
     }
 
     getUserById(id) {
-        for(const user of this._users) {
-            if (user.id === id) {
-                return user;
-            }
-        }
-
-        return false;
+        return this._users.find(user => user.id === id);
     }
 }
 
