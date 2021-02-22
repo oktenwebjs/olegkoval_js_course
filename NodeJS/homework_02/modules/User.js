@@ -53,10 +53,10 @@ class User {
         try {
             const user = this._isUserExists(data.email);
             if (!user) {
-                throw new Error(`User with email '${data.email}' not exists.`);
+                throw new Error(`User with email '${data.email}' not exists. Please, create account.`);
             } else {
                 if (user.password !== data.password) {
-                    throw new Error('Wrong user password. Please check credentials.');
+                    throw new Error('Wrong user password.');
                 }
 
                 return user;

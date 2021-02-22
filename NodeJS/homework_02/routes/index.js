@@ -13,11 +13,8 @@ router.get('/users/login', (req, res) => {
 
 router.post('/users/login', (req, res) => {
     try {
-        const userData = user.login(req.body);
-        res.render('successLogin', {
-            successMsg: 'You successfully logged in. Please continue.',
-            user: userData
-        });
+        const {id} = user.login(req.body);
+        res.redirect(`/users/${id}`);
     } catch (e) {
         res.render('login', {
             errorMsg: e.toString(),
