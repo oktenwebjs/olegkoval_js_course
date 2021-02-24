@@ -42,7 +42,7 @@ module.exports = {
 
     /**
      * Login user
-     * @param userId - integer
+     * @param user - object
      * @returns {*}
      */
     loginUser: (user) => {
