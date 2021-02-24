@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 
 const ApiRouter = require('./routes/api.route');
 
@@ -12,5 +11,5 @@ app.use(express.urlencoded({extended: true}));
 app.use('/', ApiRouter);
 
 app.listen(appPort, () => {
-    console.log('Server is running...');
+    console.log(`Server is running on port ${appPort} ...`);
 });

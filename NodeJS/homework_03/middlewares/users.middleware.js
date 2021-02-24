@@ -62,5 +62,27 @@ module.exports = {
         } catch (err) {
             res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
+    },
+
+    isLoginValid: (req, res, next) => {
+        const {preferLang = 'en'} = req.body;
+
+        try {
+            const mandatoryFields = [email", "password"];
+
+            for (const key of mandatoryFields) {
+                if (!(key in req.body)) {
+                    throw new Error('MISSING_MANDATORY_FIELD_' + key.toUpperCase());
+                }
+
+                if (req.body[key].length === 0) {
+                    throw new Error('EMPTY_MANDATORY_FIELD_' + key.toUpperCase());
+                }
+            }
+
+            next();
+        } catch (err) {
+            res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+        }
     }
 }

@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const {promisify} = require('util');
 
-const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
 const pathToDb = path.join(__dirname, '..', 'databases', 'users.json');
@@ -15,13 +14,6 @@ module.exports = {
      * @returns {*}
      */
     getAllUsers: async () => {
-        // if data is not loaded then load it from file
-        if (module.exports.users.length === 0) {
-            const users = await readFile(pathToDb);
-
-            module.exports.users = JSON.parse(users.toString());
-        }
-
         return module.exports.users;
     },
 
@@ -62,6 +54,8 @@ module.exports = {
     /**
      * Create new user
      * @param user - object
+     * @param user
+     * @returns {Promise<boolean>}
      */
     createUser: async (user) => {
         if (module.exports.users.find(elm => elm.email === user.email)) {
@@ -76,14 +70,19 @@ module.exports = {
         // set autoincrement ID for new user
         user.id = (Math.max(...module.exports.users.map(o=>o.id)) + 1).toString();
 
+        // add user into collection
         module.exports.users.push(user);
 
-        return await writeFile(pathToDb, JSON.stringify(module.exports.users));
+        // save collection
+        await writeFile(pathToDb, JSON.stringify(module.exports.users));
+
+        return true;
     },
 
     /**
      * Delete existed new user
      * @param userId - integer
+     * @returns {Promise<boolean>}
      */
     deleteUser: async (userId) => {
         const userIndex = module.exports.users.findIndex(user => user.id === userId);
@@ -92,8 +91,12 @@ module.exports = {
             throw new Error('USER_NOT_FOUND');
         }
 
+        // remove user from collection
         module.exports.users.splice(userIndex, 1);
 
-        return await writeFile(pathToDb, JSON.stringify(module.exports.users));
+        // save collection
+        await writeFile(pathToDb, JSON.stringify(module.exports.users));
+
+        return true;
     }
 }
