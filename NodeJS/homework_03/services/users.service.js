@@ -26,7 +26,7 @@ module.exports = {
     },
 
     /**
-     * Get user by id from Db
+     * Get user by email or name from Db
      * @param userField - string, it's a name or email fields to load a user
      * @returns {*}
      */
@@ -41,7 +41,7 @@ module.exports = {
     },
 
     /**
-     * Get user by id from Db
+     * Login user
      * @param userId - integer
      * @returns {*}
      */
@@ -61,7 +61,7 @@ module.exports = {
 
     /**
      * Create new user
-     * @param user
+     * @param user - object
      */
     createUser: async (user) => {
         if (module.exports.users.find(elm => elm.email === user.email)) {
