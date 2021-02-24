@@ -7,19 +7,22 @@ const writeFile = promisify(fs.writeFile);
 
 const pathToDb = path.join(__dirname, '..', 'databases', 'users.json');
 
-const DB = require(pathToDb);
-
 module.exports = {
-    users: [],
+    users: require(pathToDb),
 
     /**
      * Get list of all users
      * @returns {*}
      */
     getAllUsers: async () => {
-        const users = await readFile(pathToDb);
+        // if data is not loaded then load it from file
+        if (module.exports.users.length === 0) {
+            const users = await readFile(pathToDb);
 
-        return JSON.parse(users.toString());
+            module.exports.users = JSON.parse(users.toString());
+        }
+
+        return module.exports.users;
     },
 
     /**
@@ -28,7 +31,7 @@ module.exports = {
      * @returns {*}
      */
     getUser: (userField) => {
-        const user = DB.find(user => user.email === userField || user.name === userField);
+        const user = module.exports.users.find(user => user.email === userField || user.name === userField);
 
         if (!user) {
             throw new Error('USER_NOT_FOUND');
@@ -43,7 +46,7 @@ module.exports = {
      * @returns {*}
      */
     loginUser: (user) => {
-        const userEntity = DB.find(elm => elm.email === user.email);
+        const userEntity = module.exports.users.find(elm => elm.email === user.email);
 
         if (!userEntity) {
             throw new Error('USER_NOT_FOUND');
@@ -61,7 +64,7 @@ module.exports = {
      * @param user
      */
     createUser: async (user) => {
-        if (DB.find(elm => elm.email === user.email)) {
+        if (module.exports.users.find(elm => elm.email === user.email)) {
             throw new Error('USER_ALREADY_EXISTS');
         }
 
@@ -71,9 +74,9 @@ module.exports = {
         }
 
         // set autoincrement ID for new user
-        user.id = (DB.length + 1).toString();
+        user.id = (module.exports.users.length + 1).toString();
 
-        DB.push(user);
+        module.exports.users.push(user);
 
         return await writeFile(pathToDb, JSON.stringify(DB));
     },
@@ -83,13 +86,13 @@ module.exports = {
      * @param userId - integer
      */
     deleteUser: async (userId) => {
-        const userIndex = DB.findIndex(user => user.id === userId);
+        const userIndex = module.exports.users.findIndex(user => user.id === userId);
 
         if (userIndex === -1) {
             throw new Error('USER_NOT_FOUND');
         }
 
-        DB.splice(userIndex, 1);
+        module.exports.users.splice(userIndex, 1);
 
         return await writeFile(pathToDb, JSON.stringify(DB));
     }
