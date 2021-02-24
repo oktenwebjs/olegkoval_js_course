@@ -74,11 +74,11 @@ module.exports = {
         }
 
         // set autoincrement ID for new user
-        user.id = (module.exports.users.length + 1).toString();
+        user.id = (Math.max(...module.exports.users.map(o=>o.id)) + 1).toString();
 
         module.exports.users.push(user);
 
-        return await writeFile(pathToDb, JSON.stringify(DB));
+        return await writeFile(pathToDb, JSON.stringify(module.exports.users));
     },
 
     /**
@@ -94,6 +94,6 @@ module.exports = {
 
         module.exports.users.splice(userIndex, 1);
 
-        return await writeFile(pathToDb, JSON.stringify(DB));
+        return await writeFile(pathToDb, JSON.stringify(module.exports.users));
     }
 }

@@ -11,7 +11,6 @@ module.exports = {
         try {
             res.json(await UsersService.getAllUsers());
         } catch (err) {
-            console.log(err.message);
             res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
