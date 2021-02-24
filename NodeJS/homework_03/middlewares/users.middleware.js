@@ -68,7 +68,7 @@ module.exports = {
         const {preferLang = 'en'} = req.body;
 
         try {
-            const mandatoryFields = [email", "password"];
+            const mandatoryFields = ["email", "password"];
 
             for (const key of mandatoryFields) {
                 if (!(key in req.body)) {
