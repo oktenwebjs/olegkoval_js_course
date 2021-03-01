@@ -101,10 +101,18 @@ module.exports = {
      * @returns {Promise<boolean>}
      */
     deleteUser: async (userId) => {
-        await User.findByIdAndRemove(userId, (err) => {
+        await User.findByIdAndRemove(userId, (err, user) => {
             if (err) {
                 throw new Error(err.message);
             }
+
+            const { address } = user;
+
+            UserAddress.deleteMany({ _id: { $in: address } }, (err1) => {
+                if (err1) {
+                    throw new Error(err1.message);
+                }
+            });
         });
 
         return true;
