@@ -1,4 +1,4 @@
-const Translator = require('../dictionaries/translator');
+const Translator = require('../helpers/translator');
 const HttpCodes = require('../dictionaries/httpCodes.enum');
 
 module.exports = {
@@ -7,9 +7,9 @@ module.exports = {
 
         try {
             // eslint-disable-next-line no-shadow
-            const userId = (({ params: { userId } }) => +userId)(req);
+            const userId = (({ params: { userId } }) => userId)(req);
 
-            if (userId < 1 || !Number.isInteger(userId) || Number.isNaN(userId)) {
+            if (!userId.match(/^[a-zA-Z0-9]+$/g)) {
                 throw new Error('IS_NOT_VALID_USER_ID');
             }
 
@@ -46,7 +46,8 @@ module.exports = {
 
         try {
             const mandatoryFields = [
-                'name',
+                'firstname',
+                'lastname',
                 'email',
                 'password'
             ];

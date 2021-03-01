@@ -34,13 +34,23 @@ module.exports = {
         ua: 'Такий користувач вже існує.'
     },
 
-    MISSING_MANDATORY_FIELD_NAME: {
-        en: 'Name mandatory field is missing.',
+    MISSING_MANDATORY_FIELD_FIRSTNAME: {
+        en: 'Mandatory field "Firstname" is missing.',
         ua: "Немає обов'язкового поля Ім'я."
     },
 
-    EMPTY_MANDATORY_FIELD_NAME: {
-        en: 'Mandatory field Name is empty.',
+    EMPTY_MANDATORY_FIELD_FIRSTNAME: {
+        en: 'Mandatory field "Firstname" is empty.',
+        ua: "Обов'язкове поле Ім'я є пустим."
+    },
+
+    MISSING_MANDATORY_FIELD_LASTNAME: {
+        en: 'Mandatory field "Lastname" is missing.',
+        ua: "Немає обов'язкового поля Ім'я."
+    },
+
+    EMPTY_MANDATORY_FIELD_LASTNAME: {
+        en: 'Mandatory field "Lastname" is empty.',
         ua: "Обов'язкове поле Ім'я є пустим."
     },
 

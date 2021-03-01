@@ -1,5 +1,5 @@
 const UsersService = require('../services/users.service');
-const Translator = require('../dictionaries/translator');
+const Translator = require('../helpers/translator');
 const HttpCodes = require('../dictionaries/httpCodes.enum');
 
 module.exports = {
@@ -13,23 +13,23 @@ module.exports = {
         }
     },
 
-    getUser: (req, res) => {
+    getUser: async (req, res) => {
         const { preferLang = 'en' } = req.body;
 
         try {
             const { userField } = req.params;
 
-            res.json(UsersService.getUser(userField));
+            res.json(await UsersService.getUser(userField));
         } catch (err) {
             res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
 
-    loginUser: (req, res) => {
+    loginUser: async (req, res) => {
         const { preferLang = 'en' } = req.body;
 
         try {
-            UsersService.loginUser(req.body);
+            await UsersService.loginUser(req.body);
 
             res.status(HttpCodes.LOGIN_SUCCESS).json(Translator.getTranslation('SUCCESS_LOGGED_IN', preferLang));
         } catch (err) {

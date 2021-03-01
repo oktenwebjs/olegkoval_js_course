@@ -1,28 +1,28 @@
-const fs = require('fs');
-const { promisify } = require('util');
-
-const writeFile = promisify(fs.writeFile);
-
-const pathToDb = '../databases/users.json';
+const MD5 = require('crypto-js/md5');
+const { User } = require('../database/models/index');
 
 module.exports = {
-    // eslint-disable-next-line import/no-dynamic-require
-    users: require(pathToDb),
+    users: [],
 
     /**
      * Get list of all users
      * @returns {*}
      */
-    getAllUsers: () => module.exports.users,
+    getAllUsers: () => User.find(),
 
     /**
      * Get user by email or name from Db
      * @param userField - string, it's a name or email fields to load a user
      * @returns {*}
      */
-    getUser: (userField) => {
-        // eslint-disable-next-line no-shadow
-        const user = module.exports.users.find((user) => user.email === userField || user.name === userField);
+    getUser: async (userField) => {
+        const user = await User.findOne({
+            $or: [
+                { email: userField },
+                { firstname: userField },
+                { lastname: userField }
+            ]
+        });
 
         if (!user) {
             throw new Error('USER_NOT_FOUND');
@@ -33,47 +33,48 @@ module.exports = {
 
     /**
      * Login user
-     * @param user - object
+     * @param data - object
      * @returns {*}
      */
-    loginUser: (user) => {
-        const userEntity = module.exports.users.find((elm) => elm.email === user.email);
+    loginUser: async (data) => {
+        const user = await User.findOne({ email: data.email });
 
-        if (!userEntity) {
+        if (!user) {
             throw new Error('USER_NOT_FOUND');
         }
 
-        if (userEntity.password !== user.password) {
+        if (user.password !== MD5(data.password).toString()) {
             throw new Error('LOGIN_WRONG_PASSWORD');
         }
 
-        return userEntity;
+        return user;
     },
 
     /**
      * Create new user
-     * @param user - object
-     * @param user
+     * @param data - object
      * @returns {Promise<boolean>}
      */
-    createUser: async (user) => {
-        if (module.exports.users.find((elm) => elm.email === user.email)) {
+    createUser: async (data) => {
+        const {
+            firstname, lastname, email, password
+        } = data;
+
+        const userExists = await User.findOne({ email });
+
+        if (userExists) {
             throw new Error('USER_ALREADY_EXISTS');
         }
 
-        // remove 'preferLang' key from User entity
-        if ('preferLang' in user) {
-            delete user.preferLang;
-        }
-
-        // set autoincrement ID for new user
-        user.id = (Math.max(...module.exports.users.map((o) => o.id)) + 1).toString();
+        const passwordHash = MD5(password).toString();
 
         // add user into collection
-        module.exports.users.push(user);
-
-        // save collection
-        await writeFile(pathToDb, JSON.stringify(module.exports.users));
+        await User.create({
+            firstname,
+            lastname,
+            email,
+            password: passwordHash
+        });
 
         return true;
     },
@@ -84,17 +85,11 @@ module.exports = {
      * @returns {Promise<boolean>}
      */
     deleteUser: async (userId) => {
-        const userIndex = module.exports.users.findIndex((user) => user.id === userId);
-
-        if (userIndex === -1) {
-            throw new Error('USER_NOT_FOUND');
-        }
-
-        // remove user from collection
-        module.exports.users.splice(userIndex, 1);
-
-        // save collection
-        await writeFile(pathToDb, JSON.stringify(module.exports.users));
+        await User.findByIdAndRemove(userId, (err) => {
+            if (err) {
+                throw new Error(err.message);
+            }
+        });
 
         return true;
     }
