@@ -1,5 +1,5 @@
 const MD5 = require('crypto-js/md5');
-const { User } = require('../database/models/index');
+const { User, UserAddress } = require('../database/models/index');
 
 module.exports = {
     users: [],
@@ -8,7 +8,7 @@ module.exports = {
      * Get list of all users
      * @returns {*}
      */
-    getAllUsers: () => User.find(),
+    getAllUsers: () => User.find().populate('address'),
 
     /**
      * Get user by email or name from Db
@@ -22,7 +22,7 @@ module.exports = {
                 { firstname: userField },
                 { lastname: userField }
             ]
-        });
+        }).populate('address');
 
         if (!user) {
             throw new Error('USER_NOT_FOUND');
@@ -57,7 +57,7 @@ module.exports = {
      */
     createUser: async (data) => {
         const {
-            firstname, lastname, email, password
+            firstname, lastname, email, password, street, city, zipcode, country
         } = data;
 
         const userExists = await User.findOne({ email });
@@ -69,11 +69,27 @@ module.exports = {
         const passwordHash = MD5(password).toString();
 
         // add user into collection
-        await User.create({
-            firstname,
-            lastname,
-            email,
-            password: passwordHash
+        await UserAddress.create({
+            street,
+            city,
+            zipcode,
+            country
+        }, (err, address) => {
+            if (err) {
+                throw new Error(err.message);
+            }
+
+            User.create({
+                firstname,
+                lastname,
+                email,
+                password: passwordHash,
+                address: [address._id]
+            }, (err1) => {
+                if (err1) {
+                    throw new Error(err1.message);
+                }
+            });
         });
 
         return true;

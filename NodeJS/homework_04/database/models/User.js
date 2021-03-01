@@ -1,13 +1,19 @@
 const { Schema } = require('mongoose');
 
-const UserAddress = require('./UserAddress');
-
 const UserSchema = new Schema({
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    address: [UserAddress]
+    address: [{ type: Schema.Types.ObjectId, ref: 'UserAddress' }],
+}, {
+    timestamps: true,
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
+});
+
+UserSchema.virtual('fullname').get(function() {
+    return `${this.firstname} ${this.lastname}`;
 });
 
 module.exports = UserSchema;

@@ -74,6 +74,46 @@ module.exports = {
         ua: "Обов'язкове поле Password є пустим."
     },
 
+    MISSING_MANDATORY_FIELD_STREET: {
+        en: 'Mandatory field "Street" is missing.',
+        ua: "Немає обов'язкового поля Password."
+    },
+
+    EMPTY_MANDATORY_FIELD_STREET: {
+        en: 'Mandatory field "Street" is empty.',
+        ua: "Обов'язкове поле Password є пустим."
+    },
+
+    MISSING_MANDATORY_FIELD_CITY: {
+        en: 'Mandatory field "City" is missing.',
+        ua: "Немає обов'язкового поля Password."
+    },
+
+    EMPTY_MANDATORY_FIELD_CITY: {
+        en: 'Mandatory field "City" is empty.',
+        ua: "Обов'язкове поле Password є пустим."
+    },
+
+    MISSING_MANDATORY_FIELD_ZIPCODE: {
+        en: 'Mandatory field "Zipcode" is missing.',
+        ua: "Немає обов'язкового поля Password."
+    },
+
+    EMPTY_MANDATORY_FIELD_ZIPCODE: {
+        en: 'Mandatory field "Zipcode" is empty.',
+        ua: "Обов'язкове поле Password є пустим."
+    },
+
+    MISSING_MANDATORY_FIELD_COUNTRY: {
+        en: 'Mandatory field "Country" is missing.',
+        ua: "Немає обов'язкового поля Password."
+    },
+
+    EMPTY_MANDATORY_FIELD_COUNTRY: {
+        en: 'Mandatory field "Country" is empty.',
+        ua: "Обов'язкове поле Password є пустим."
+    },
+
     LOGIN_WRONG_PASSWORD: {
         en: 'Wrong user password.',
         ua: 'Пароль користувача не вірний.'

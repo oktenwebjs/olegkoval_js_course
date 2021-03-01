@@ -49,7 +49,11 @@ module.exports = {
                 'firstname',
                 'lastname',
                 'email',
-                'password'
+                'password',
+                'street',
+                'city',
+                'zipcode',
+                'country'
             ];
 
             for (const key of mandatoryFields) {
