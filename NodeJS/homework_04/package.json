@@ -1,0 +1,22 @@
+{
+  "name": "nodejs_homework_03",
+  "version": "1.0.0",
+  "description": "NodeJS Homework #3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oktenwebjs/olegkoval_js_course.git"
+  },
+  "author": "Oleg Koval",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oktenwebjs/olegkoval_js_course/issues"
+  },
+  "homepage": "https://github.com/oktenwebjs/olegkoval_js_course#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
