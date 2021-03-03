@@ -3,5 +3,6 @@ module.exports = {
     LOGIN_FAILED: 401,
     CREATED: 201,
     DELETED: 204,
-    BAD_REQUEST: 400
+    BAD_REQUEST: 400,
+    DELETE_FAILED: 410
 };

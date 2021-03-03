@@ -8,7 +8,7 @@ module.exports = {
      * Get list of all users
      * @returns {*}
      */
-    getAllUsers: () => User.find().populate('address'),
+    getAllUsers: () => User.find(),
 
     /**
      * Get user by email or name from Db
@@ -22,7 +22,7 @@ module.exports = {
                 { firstname: userField },
                 { lastname: userField }
             ]
-        }).populate('address');
+        });
 
         if (!user) {
             throw new Error('USER_NOT_FOUND');
@@ -106,13 +106,15 @@ module.exports = {
                 throw new Error(err.message);
             }
 
-            const { address } = user;
+            if (user !== null) {
+                const { address } = user;
 
-            UserAddress.deleteMany({ _id: { $in: address } }, (err1) => {
-                if (err1) {
-                    throw new Error(err1.message);
-                }
-            });
+                UserAddress.deleteMany({ _id: { $in: address } }, (err1) => {
+                    if (err1) {
+                        throw new Error(err1.message);
+                    }
+                });
+            }
         });
 
         return true;

@@ -59,7 +59,7 @@ module.exports = {
 
             res.status(HttpCodes.DELETED).json(Translator.getTranslation('SUCCESS_DELETED', preferLang));
         } catch (err) {
-            res.status(HttpCodes.LOGIN_FAILED).json(Translator.getTranslation(err.message, preferLang));
+            res.status(HttpCodes.DELETE_FAILED).json(Translator.getTranslation(err.message, preferLang));
         }
     }
 };
