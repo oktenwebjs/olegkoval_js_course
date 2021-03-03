@@ -1,19 +1,19 @@
 const express = require('express');
 
 const ApiRouter = require('./routes/api.route');
-const _dbConnection = require('./database/connections/mongodb');
+const { dbConnection } = require('./database/connections');
+const { appConfig } = require('./constants');
 
-const appPort = 8000;
 const app = express();
 
 // connect to DB
-_dbConnection();
+dbConnection();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', ApiRouter);
 
-app.listen(appPort, () => {
-    console.log(`Server is running on port ${appPort} ...`);
+app.listen(appConfig.APP_PORT, () => {
+    console.log(`Server is running on port ${appConfig.APP_PORT} ...`);
 });

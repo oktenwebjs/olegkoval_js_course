@@ -1,10 +1,10 @@
-const MessagesDictionary = require('../dictionaries/messages.dictionary.enum');
+const { messagesDictionary } = require('../dictionaries');
 
 module.exports = {
     getTranslation: (code, lang) => (
         // eslint-disable-next-line no-nested-ternary
-        MessagesDictionary[code] ? MessagesDictionary[code][lang] : (
-            code.length > 0 ? code : MessagesDictionary.UNKNOWN_ERROR[lang]
+        messagesDictionary[code] ? messagesDictionary[code][lang] : (
+            code.length > 0 ? code : messagesDictionary.UNKNOWN_ERROR[lang]
         )
     )
 };

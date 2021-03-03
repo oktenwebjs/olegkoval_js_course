@@ -1,21 +1,45 @@
 const Translator = require('../helpers/translator');
-const HttpCodes = require('../dictionaries/httpCodes.enum');
+const { httpCodes } = require('../dictionaries');
+const { userValidators } = require('../validators');
 
 module.exports = {
+    _validate: (validator, data) => {
+        const { error } = validator.validate(data);
+
+        if (error) {
+            const { type, context, message } = error.details[0];
+
+            // specific fields validation errors
+            switch (context.key) {
+                case 'userField':
+                    throw new Error('KEY_FIELD_IS_NOT_VALID');
+                case 'userId':
+                    throw new Error('IS_NOT_VALID_USER_ID');
+            }
+
+            // default validate errors
+            switch (type) {
+                case 'string.empty':
+                    throw new Error(`EMPTY_MANDATORY_FIELD_${context.key.toUpperCase()}`);
+                case 'any.required':
+                    throw new Error(`MISSING_MANDATORY_FIELD_${context.key.toUpperCase()}`);
+                case 'string.pattern.base':
+                    throw new Error(`INCORRECT_MANDATORY_FIELD_${context.key.toUpperCase()}`);
+                default:
+                    throw new Error(message);
+            }
+        }
+    },
+
     isUserIdValid: (req, res, next) => {
         const { preferLang = 'en' } = req.body;
 
         try {
-            // eslint-disable-next-line no-shadow
-            const userId = (({ params: { userId } }) => userId)(req);
-
-            if (!userId.match(/^[a-zA-Z0-9]+$/g)) {
-                throw new Error('IS_NOT_VALID_USER_ID');
-            }
+            module.exports._validate(userValidators.userIdValidator, req.params);
 
             next();
         } catch (err) {
-            res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
 
@@ -29,15 +53,11 @@ module.exports = {
         const { preferLang = 'en' } = req.body;
 
         try {
-            const { userField } = req.params;
-
-            if (userField.length === 0 || !userField.match(/^[\w@_.]+$/i)) {
-                throw new Error('KEY_FIELD_IS_NOT_VALID');
-            }
+            module.exports._validate(userValidators.userFieldValidator, req.params);
 
             next();
         } catch (err) {
-            res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
 
@@ -45,30 +65,11 @@ module.exports = {
         const { preferLang = 'en' } = req.body;
 
         try {
-            const mandatoryFields = [
-                'firstname',
-                'lastname',
-                'email',
-                'password',
-                'street',
-                'city',
-                'zipcode',
-                'country'
-            ];
-
-            for (const key of mandatoryFields) {
-                if (!(key in req.body)) {
-                    throw new Error(`MISSING_MANDATORY_FIELD_${key.toUpperCase()}`);
-                }
-
-                if (req.body[key].length === 0) {
-                    throw new Error(`EMPTY_MANDATORY_FIELD_${key.toUpperCase()}`);
-                }
-            }
+            module.exports._validate(userValidators.userCreateValidator, req.body);
 
             next();
         } catch (err) {
-            res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
 
@@ -76,24 +77,11 @@ module.exports = {
         const { preferLang = 'en' } = req.body;
 
         try {
-            const mandatoryFields = [
-                'email',
-                'password'
-            ];
-
-            for (const key of mandatoryFields) {
-                if (!(key in req.body)) {
-                    throw new Error(`MISSING_MANDATORY_FIELD_${key.toUpperCase()}`);
-                }
-
-                if (req.body[key].length === 0) {
-                    throw new Error(`EMPTY_MANDATORY_FIELD_${key.toUpperCase()}`);
-                }
-            }
+            module.exports._validate(userValidators.userLoginValidator, req.body);
 
             next();
         } catch (err) {
-            res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     }
 };

@@ -44,6 +44,11 @@ module.exports = {
         ua: "Обов'язкове поле Ім'я є пустим."
     },
 
+    INCORRECT_MANDATORY_FIELD_FIRSTNAME: {
+        en: 'Value of "Firstname" is not valid.',
+        ua: "Поле Ім'я не є валідним."
+    },
+
     MISSING_MANDATORY_FIELD_LASTNAME: {
         en: 'Mandatory field "Lastname" is missing.',
         ua: "Немає обов'язкового поля Ім'я."
@@ -51,7 +56,12 @@ module.exports = {
 
     EMPTY_MANDATORY_FIELD_LASTNAME: {
         en: 'Mandatory field "Lastname" is empty.',
-        ua: "Обов'язкове поле Ім'я є пустим."
+        ua: "Обов'язкове поле Фамілія є пустим."
+    },
+
+    INCORRECT_MANDATORY_FIELD_LASTNAME: {
+        en: 'Value of "Lastname" is not valid.',
+        ua: 'Поле Фамілія не є валідним.'
     },
 
     MISSING_MANDATORY_FIELD_EMAIL: {
@@ -64,6 +74,11 @@ module.exports = {
         ua: "Обов'язкове поле Email є пустим."
     },
 
+    INCORRECT_MANDATORY_FIELD_EMAIL: {
+        en: 'Value of "Email" is not valid.',
+        ua: 'Поле Email не є валідним.'
+    },
+
     MISSING_MANDATORY_FIELD_PASSWORD: {
         en: 'Password mandatory field is missing.',
         ua: "Немає обов'язкового поля Password."
@@ -74,44 +89,69 @@ module.exports = {
         ua: "Обов'язкове поле Password є пустим."
     },
 
+    INCORRECT_MANDATORY_FIELD_PASSWORD: {
+        en: 'Value of "Password" is not valid.',
+        ua: 'Поле Password не є валідним.'
+    },
+
     MISSING_MANDATORY_FIELD_STREET: {
         en: 'Mandatory field "Street" is missing.',
-        ua: "Немає обов'язкового поля Password."
+        ua: "Немає обов'язкового поля вулиця."
     },
 
     EMPTY_MANDATORY_FIELD_STREET: {
         en: 'Mandatory field "Street" is empty.',
-        ua: "Обов'язкове поле Password є пустим."
+        ua: "Обов'язкове поле Вулиця є пустим."
+    },
+
+    INCORRECT_MANDATORY_FIELD_STREET: {
+        en: 'Value of "Street" is not valid.',
+        ua: 'Поле Вулиця не є валідним.'
     },
 
     MISSING_MANDATORY_FIELD_CITY: {
         en: 'Mandatory field "City" is missing.',
-        ua: "Немає обов'язкового поля Password."
+        ua: "Немає обов'язкового поля Місто."
     },
 
     EMPTY_MANDATORY_FIELD_CITY: {
         en: 'Mandatory field "City" is empty.',
-        ua: "Обов'язкове поле Password є пустим."
+        ua: "Обов'язкове поле Місто є пустим."
+    },
+
+    INCORRECT_MANDATORY_FIELD_CITY: {
+        en: 'Value of "City" is not valid.',
+        ua: 'Поле Місто не є валідним.'
     },
 
     MISSING_MANDATORY_FIELD_ZIPCODE: {
         en: 'Mandatory field "Zipcode" is missing.',
-        ua: "Немає обов'язкового поля Password."
+        ua: "Немає обов'язкового поля Індекс."
     },
 
     EMPTY_MANDATORY_FIELD_ZIPCODE: {
         en: 'Mandatory field "Zipcode" is empty.',
-        ua: "Обов'язкове поле Password є пустим."
+        ua: "Обов'язкове поле Індекс є пустим."
+    },
+
+    INCORRECT_MANDATORY_FIELD_ZIPCODE: {
+        en: 'Value of "Zipcode" is not valid.',
+        ua: 'Поле Індекс не є валідним.'
     },
 
     MISSING_MANDATORY_FIELD_COUNTRY: {
         en: 'Mandatory field "Country" is missing.',
-        ua: "Немає обов'язкового поля Password."
+        ua: "Немає обов'язкового поля Країна."
     },
 
     EMPTY_MANDATORY_FIELD_COUNTRY: {
         en: 'Mandatory field "Country" is empty.',
-        ua: "Обов'язкове поле Password є пустим."
+        ua: "Обов'язкове поле Країна є пустим."
+    },
+
+    INCORRECT_MANDATORY_FIELD_COUNTRY: {
+        en: 'Value of "Country" is not valid.',
+        ua: 'Поле Країна не є валідним.'
     },
 
     LOGIN_WRONG_PASSWORD: {

@@ -1,11 +1,9 @@
 const mongodb = require('mongoose');
 
-const host = '127.0.0.1';
-const port = '27017';
-const dbname = 'users';
+const { mongooseConfig } = require('../../constants');
 
 module.exports = () => {
-    mongodb.connect(`mongodb://${host}:${port}/${dbname}`, {
+    mongodb.connect(`mongodb://${mongooseConfig.HOST}:${mongooseConfig.PORT}/${mongooseConfig.DB_NAME}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false

@@ -1,6 +1,6 @@
 const UsersService = require('../services/users.service');
 const Translator = require('../helpers/translator');
-const HttpCodes = require('../dictionaries/httpCodes.enum');
+const { httpCodes } = require('../dictionaries');
 
 module.exports = {
     getAllUsers: async (req, res) => {
@@ -9,7 +9,7 @@ module.exports = {
         try {
             res.json(await UsersService.getAllUsers());
         } catch (err) {
-            res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
 
@@ -21,7 +21,7 @@ module.exports = {
 
             res.json(await UsersService.getUser(userField));
         } catch (err) {
-            res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
 
@@ -31,9 +31,9 @@ module.exports = {
         try {
             await UsersService.loginUser(req.body);
 
-            res.status(HttpCodes.LOGIN_SUCCESS).json(Translator.getTranslation('SUCCESS_LOGGED_IN', preferLang));
+            res.status(httpCodes.LOGIN_SUCCESS).json(Translator.getTranslation('SUCCESS_LOGGED_IN', preferLang));
         } catch (err) {
-            res.status(HttpCodes.LOGIN_FAILED).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.LOGIN_FAILED).json(Translator.getTranslation(err.message, preferLang));
         }
     },
 
@@ -43,9 +43,9 @@ module.exports = {
         try {
             await UsersService.createUser(req.body);
 
-            res.status(HttpCodes.CREATED).json(Translator.getTranslation('USER_IS_CREATED', preferLang));
+            res.status(httpCodes.CREATED).json(Translator.getTranslation('USER_IS_CREATED', preferLang));
         } catch (err) {
-            res.status(HttpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
 
@@ -57,9 +57,9 @@ module.exports = {
 
             await UsersService.deleteUser(userId);
 
-            res.status(HttpCodes.DELETED).json(Translator.getTranslation('SUCCESS_DELETED', preferLang));
+            res.status(httpCodes.DELETED).json(Translator.getTranslation('SUCCESS_DELETED', preferLang));
         } catch (err) {
-            res.status(HttpCodes.DELETE_FAILED).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.DELETE_FAILED).json(Translator.getTranslation(err.message, preferLang));
         }
     }
 };
