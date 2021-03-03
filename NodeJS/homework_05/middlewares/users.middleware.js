@@ -3,6 +3,12 @@ const { httpCodes } = require('../dictionaries');
 const { userValidators } = require('../validators');
 
 module.exports = {
+    /**
+     * Execute validator and init error if needed
+     * @param validator
+     * @param data
+     * @private
+     */
     _validate: (validator, data) => {
         const { error } = validator.validate(data);
 
@@ -31,6 +37,12 @@ module.exports = {
         }
     },
 
+    /**
+     * Check if User Id is valid
+     * @param req
+     * @param res
+     * @param next
+     */
     isUserIdValid: (req, res, next) => {
         const { preferLang = 'en' } = req.body;
 
@@ -44,7 +56,7 @@ module.exports = {
     },
 
     /**
-     * Check if user field by which we try to load it is valid
+     * Check if user field by which we try to load it is valid (email or firstname or lastname)
      * @param req
      * @param res
      * @param next
@@ -61,6 +73,12 @@ module.exports = {
         }
     },
 
+    /**
+     * Check if new user fields are valid
+     * @param req
+     * @param res
+     * @param next
+     */
     isNewUserValid: (req, res, next) => {
         const { preferLang = 'en' } = req.body;
 
@@ -73,6 +91,12 @@ module.exports = {
         }
     },
 
+    /**
+     * Check if login credentials are valid
+     * @param req
+     * @param res
+     * @param next
+     */
     isLoginValid: (req, res, next) => {
         const { preferLang = 'en' } = req.body;
 

@@ -11,9 +11,9 @@ module.exports = {
     getAllUsers: () => User.find(),
 
     /**
-     * Get user by email or name from Db
-     * @param userField - string, it's a name or email fields to load a user
-     * @returns {*}
+     * Get user by email or firstname or lastname from Db
+     * @param {String} userField
+     * @returns {Promise<*>}
      */
     getUser: async (userField) => {
         const user = await User.findOne({
@@ -33,8 +33,8 @@ module.exports = {
 
     /**
      * Login user
-     * @param data - object
-     * @returns {*}
+     * @param {Object} data
+     * @returns {Promise<*>}
      */
     loginUser: async (data) => {
         const user = await User.findOne({ email: data.email });
@@ -54,7 +54,7 @@ module.exports = {
 
     /**
      * Create new user
-     * @param data - object
+     * @param {Object} data
      * @returns {Promise<boolean>}
      */
     createUser: async (data) => {
@@ -98,8 +98,8 @@ module.exports = {
     },
 
     /**
-     * Delete existed new user
-     * @param userId - integer
+     * Delete existed user
+     * @param {String} userId
      * @returns {Promise<boolean>}
      */
     deleteUser: async (userId) => {
