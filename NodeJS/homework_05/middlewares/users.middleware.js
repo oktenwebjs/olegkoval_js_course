@@ -1,4 +1,4 @@
-const Translator = require('../helpers/translator');
+const { Translator } = require('../helpers');
 const { httpCodes } = require('../dictionaries');
 const { userValidators } = require('../validators');
 

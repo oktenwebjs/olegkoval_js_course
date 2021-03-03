@@ -1,5 +1,5 @@
-const UsersService = require('../services/users.service');
-const Translator = require('../helpers/translator');
+const { UsersService } = require('../services');
+const { Translator } = require('../helpers');
 const { httpCodes } = require('../dictionaries');
 
 module.exports = {

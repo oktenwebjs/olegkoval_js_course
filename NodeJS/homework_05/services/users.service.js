@@ -1,4 +1,4 @@
-const Password = require('../helpers/password');
+const { Password } = require('../helpers');
 const { User, UserAddress } = require('../database/models/index');
 
 module.exports = {
