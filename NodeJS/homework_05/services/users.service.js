@@ -40,13 +40,13 @@ module.exports = {
         const user = await User.findOne({ email: data.email });
 
         if (!user) {
-            throw new Error('USER_NOT_FOUND');
+            throw new Error('WRONG_LOGIN_PASSWORD');
         }
 
         const passCheck = await Password.compare(data.password, user.password);
 
         if (!passCheck) {
-            throw new Error('LOGIN_WRONG_PASSWORD');
+            throw new Error('WRONG_LOGIN_PASSWORD');
         }
 
         return user;

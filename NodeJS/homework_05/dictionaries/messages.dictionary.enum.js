@@ -154,9 +154,9 @@ module.exports = {
         ua: 'Поле Країна не є валідним.'
     },
 
-    LOGIN_WRONG_PASSWORD: {
-        en: 'Wrong user password.',
-        ua: 'Пароль користувача не вірний.'
+    WRONG_LOGIN_PASSWORD: {
+        en: 'Wrong login or password.',
+        ua: 'Логін або пароль користувача не вірні.'
     },
 
     UNKNOWN_ERROR: {
