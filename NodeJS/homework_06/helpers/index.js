@@ -1,4 +1,5 @@
 module.exports = {
     Password: require('./password'),
-    Translator: require('./translator')
+    Translator: require('./translator'),
+    Tokenizer: require('./tokenizer')
 };

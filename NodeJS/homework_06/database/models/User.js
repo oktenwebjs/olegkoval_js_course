@@ -4,7 +4,7 @@ const UserSchema = new Schema({
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     email: { type: String, required: true },
-    password: { type: String, required: true },
+    password: { type: String, required: true, select: false },
     address: [{ type: Schema.Types.ObjectId, ref: 'UserAddress' }],
 }, {
     timestamps: true,

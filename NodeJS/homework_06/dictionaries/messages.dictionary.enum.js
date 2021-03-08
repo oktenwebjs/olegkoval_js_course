@@ -1,166 +1,103 @@
 module.exports = {
-    USER_IS_CREATED: {
-        en: 'User is created.',
-        ua: 'Створено користувача.'
-    },
+    USER_IS_CREATED: 2001,
 
-    SUCCESS_LOGGED_IN: {
-        en: 'Successfully logged in.',
-        ua: 'Користувача залоговано.'
-    },
+    SUCCESS_LOGGED_IN: 2002,
 
-    SUCCESS_DELETED: {
-        en: 'User successfully deleted.',
-        ua: 'Користувача видалено.'
-    },
+    SUCCESS_LOGGED_OUT: 2003,
 
-    IS_NOT_VALID_USER_ID: {
-        en: 'Is not valid user ID.',
-        ua: 'ID користувача не є валідним.'
-    },
+    SUCCESS_DELETED: 2004,
 
-    KEY_FIELD_IS_NOT_VALID: {
-        en: 'Key field value to load a user is not valid.',
-        ua: 'Значення поля для отримання користувача не є валідним.'
-    },
+    // Is not valid user ID
+    IS_NOT_VALID_USER_ID: 4003,
 
-    USER_NOT_FOUND: {
-        en: 'User is not found.',
-        ua: 'Такого користувача не знайдено.'
-    },
+    // Key field value to load a user is not valid
+    KEY_FIELD_IS_NOT_VALID: 4004,
 
-    USER_ALREADY_EXISTS: {
-        en: 'User with this email already exists.',
-        ua: 'Такий користувач вже існує.'
-    },
+    // User is not found
+    USER_NOT_FOUND: 40010,
 
-    MISSING_MANDATORY_FIELD_FIRSTNAME: {
-        en: 'Mandatory field "Firstname" is missing.',
-        ua: "Немає обов'язкового поля Ім'я."
-    },
+    // User with this email already exists
+    USER_ALREADY_EXISTS: 40011,
 
-    EMPTY_MANDATORY_FIELD_FIRSTNAME: {
-        en: 'Mandatory field "Firstname" is empty.',
-        ua: "Обов'язкове поле Ім'я є пустим."
-    },
+    // Mandatory field "Firstname" is missing
+    MISSING_MANDATORY_FIELD_FIRSTNAME: 40012,
 
-    INCORRECT_MANDATORY_FIELD_FIRSTNAME: {
-        en: 'Value of "Firstname" is not valid.',
-        ua: "Поле Ім'я не є валідним."
-    },
+    // Mandatory field "Firstname" is empty
+    EMPTY_MANDATORY_FIELD_FIRSTNAME: 40013,
 
-    MISSING_MANDATORY_FIELD_LASTNAME: {
-        en: 'Mandatory field "Lastname" is missing.',
-        ua: "Немає обов'язкового поля Ім'я."
-    },
+    // Value of "Firstname" is not valid
+    INCORRECT_MANDATORY_FIELD_FIRSTNAME: 40014,
 
-    EMPTY_MANDATORY_FIELD_LASTNAME: {
-        en: 'Mandatory field "Lastname" is empty.',
-        ua: "Обов'язкове поле Фамілія є пустим."
-    },
+    // Mandatory field "Lastname" is missing.
+    MISSING_MANDATORY_FIELD_LASTNAME: 40022,
 
-    INCORRECT_MANDATORY_FIELD_LASTNAME: {
-        en: 'Value of "Lastname" is not valid.',
-        ua: 'Поле Фамілія не є валідним.'
-    },
+    // Mandatory field "Lastname" is empty
+    EMPTY_MANDATORY_FIELD_LASTNAME: 40023,
 
-    MISSING_MANDATORY_FIELD_EMAIL: {
-        en: 'Email mandatory field is missing.',
-        ua: "Немає обов'язкового поля Email."
-    },
+    // Value of "Lastname" is not valid
+    INCORRECT_MANDATORY_FIELD_LASTNAME: 40024,
 
-    EMPTY_MANDATORY_FIELD_EMAIL: {
-        en: 'Mandatory field Email is empty.',
-        ua: "Обов'язкове поле Email є пустим."
-    },
+    // Email mandatory field is missing
+    MISSING_MANDATORY_FIELD_EMAIL: 40032,
 
-    INCORRECT_MANDATORY_FIELD_EMAIL: {
-        en: 'Value of "Email" is not valid.',
-        ua: 'Поле Email не є валідним.'
-    },
+    // Mandatory field Email is empty
+    EMPTY_MANDATORY_FIELD_EMAIL: 40033,
 
-    MISSING_MANDATORY_FIELD_PASSWORD: {
-        en: 'Password mandatory field is missing.',
-        ua: "Немає обов'язкового поля Password."
-    },
+    // Value of "Email" is not valid
+    INCORRECT_MANDATORY_FIELD_EMAIL: 40034,
 
-    EMPTY_MANDATORY_FIELD_PASSWORD: {
-        en: 'Mandatory field Password is empty.',
-        ua: "Обов'язкове поле Password є пустим."
-    },
+    // Password mandatory field is missing
+    MISSING_MANDATORY_FIELD_PASSWORD: 40042,
 
-    INCORRECT_MANDATORY_FIELD_PASSWORD: {
-        en: 'Value of "Password" is not valid.',
-        ua: 'Поле Password не є валідним.'
-    },
+    // Mandatory field Password is empty
+    EMPTY_MANDATORY_FIELD_PASSWORD: 40043,
 
-    MISSING_MANDATORY_FIELD_STREET: {
-        en: 'Mandatory field "Street" is missing.',
-        ua: "Немає обов'язкового поля вулиця."
-    },
+    // Value of "Password" is not valid
+    INCORRECT_MANDATORY_FIELD_PASSWORD: 40044,
 
-    EMPTY_MANDATORY_FIELD_STREET: {
-        en: 'Mandatory field "Street" is empty.',
-        ua: "Обов'язкове поле Вулиця є пустим."
-    },
+    // Mandatory field "Street" is missing
+    MISSING_MANDATORY_FIELD_STREET: 40052,
 
-    INCORRECT_MANDATORY_FIELD_STREET: {
-        en: 'Value of "Street" is not valid.',
-        ua: 'Поле Вулиця не є валідним.'
-    },
+    // Mandatory field "Street" is empty
+    EMPTY_MANDATORY_FIELD_STREET: 40053,
 
-    MISSING_MANDATORY_FIELD_CITY: {
-        en: 'Mandatory field "City" is missing.',
-        ua: "Немає обов'язкового поля Місто."
-    },
+    // Value of "Street" is not valid
+    INCORRECT_MANDATORY_FIELD_STREET: 40054,
 
-    EMPTY_MANDATORY_FIELD_CITY: {
-        en: 'Mandatory field "City" is empty.',
-        ua: "Обов'язкове поле Місто є пустим."
-    },
+    // Mandatory field "City" is missing
+    MISSING_MANDATORY_FIELD_CITY: 40062,
 
-    INCORRECT_MANDATORY_FIELD_CITY: {
-        en: 'Value of "City" is not valid.',
-        ua: 'Поле Місто не є валідним.'
-    },
+    // Mandatory field "City" is empty
+    EMPTY_MANDATORY_FIELD_CITY: 40063,
 
-    MISSING_MANDATORY_FIELD_ZIPCODE: {
-        en: 'Mandatory field "Zipcode" is missing.',
-        ua: "Немає обов'язкового поля Індекс."
-    },
+    // Value of "City" is not valid
+    INCORRECT_MANDATORY_FIELD_CITY: 40064,
 
-    EMPTY_MANDATORY_FIELD_ZIPCODE: {
-        en: 'Mandatory field "Zipcode" is empty.',
-        ua: "Обов'язкове поле Індекс є пустим."
-    },
+    // Mandatory field "Zipcode" is missing
+    MISSING_MANDATORY_FIELD_ZIPCODE: 40072,
 
-    INCORRECT_MANDATORY_FIELD_ZIPCODE: {
-        en: 'Value of "Zipcode" is not valid.',
-        ua: 'Поле Індекс не є валідним.'
-    },
+    // Mandatory field "Zipcode" is empty
+    EMPTY_MANDATORY_FIELD_ZIPCODE: 40073,
 
-    MISSING_MANDATORY_FIELD_COUNTRY: {
-        en: 'Mandatory field "Country" is missing.',
-        ua: "Немає обов'язкового поля Країна."
-    },
+    // Value of "Zipcode" is not valid
+    INCORRECT_MANDATORY_FIELD_ZIPCODE: 40074,
 
-    EMPTY_MANDATORY_FIELD_COUNTRY: {
-        en: 'Mandatory field "Country" is empty.',
-        ua: "Обов'язкове поле Країна є пустим."
-    },
+    // Mandatory field "Country" is missing
+    MISSING_MANDATORY_FIELD_COUNTRY: 40082,
 
-    INCORRECT_MANDATORY_FIELD_COUNTRY: {
-        en: 'Value of "Country" is not valid.',
-        ua: 'Поле Країна не є валідним.'
-    },
+    // Mandatory field "Country" is empty
+    EMPTY_MANDATORY_FIELD_COUNTRY: 40083,
 
-    WRONG_LOGIN_PASSWORD: {
-        en: 'Wrong login or password.',
-        ua: 'Логін або пароль користувача не вірні.'
-    },
+    // Value of "Country" is not valid
+    INCORRECT_MANDATORY_FIELD_COUNTRY: 40084,
 
-    UNKNOWN_ERROR: {
-        en: 'Unknown Error.',
-        ua: 'Не відома помилка.'
-    }
+    WRONG_LOGIN_PASSWORD: 4001,
+
+    TOKENS_NOT_GENERATED: 4002,
+
+    ACCESS_TOKEN_IS_NOT_VALID: 4011,
+
+    REFRESH_TOKEN_IS_NOT_VALID: 4012,
+
+    UNKNOWN_ERROR: 4009
 };

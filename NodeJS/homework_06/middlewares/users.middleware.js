@@ -90,22 +90,4 @@ module.exports = {
             res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
         }
     },
-
-    /**
-     * Check if login credentials are valid
-     * @param req
-     * @param res
-     * @param next
-     */
-    isLoginValid: (req, res, next) => {
-        const { preferLang = 'en' } = req.body;
-
-        try {
-            module.exports._validate(userValidators.userLoginValidator, req.body);
-
-            next();
-        } catch (err) {
-            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
-        }
-    }
 };

@@ -4,48 +4,30 @@ const { httpCodes } = require('../dictionaries');
 
 module.exports = {
     getAllUsers: async (req, res) => {
-        const { preferLang = 'en' } = req.body;
-
         try {
             res.json(await UsersService.getAllUsers());
         } catch (err) {
-            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message));
         }
     },
 
     getUser: async (req, res) => {
-        const { preferLang = 'en' } = req.body;
-
         try {
-            const { userField } = req.params;
+            const { userId } = req.params;
 
-            res.json(await UsersService.getUser(userField));
+            res.json(await UsersService.getUser(userId));
         } catch (err) {
-            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
-        }
-    },
-
-    loginUser: async (req, res) => {
-        const { preferLang = 'en' } = req.body;
-
-        try {
-            await UsersService.loginUser(req.body);
-
-            res.status(httpCodes.LOGIN_SUCCESS).json(Translator.getTranslation('SUCCESS_LOGGED_IN', preferLang));
-        } catch (err) {
-            res.status(httpCodes.LOGIN_FAILED).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message));
         }
     },
 
     createUser: async (req, res) => {
-        const { preferLang = 'en' } = req.body;
-
         try {
             await UsersService.createUser(req.body);
 
-            res.status(httpCodes.CREATED).json(Translator.getTranslation('USER_IS_CREATED', preferLang));
+            res.status(httpCodes.CREATED).json(Translator.getTranslation('USER_IS_CREATED'));
         } catch (err) {
-            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message));
         }
     },
 

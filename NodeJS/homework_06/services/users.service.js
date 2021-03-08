@@ -12,41 +12,14 @@ module.exports = {
 
     /**
      * Get user by email or firstname or lastname from Db
-     * @param {String} userField
+     * @param {String} userId
      * @returns {Promise<*>}
      */
-    getUser: async (userField) => {
-        const user = await User.findOne({
-            $or: [
-                { email: userField },
-                { firstname: userField },
-                { lastname: userField }
-            ]
-        });
+    getUser: async (userId) => {
+        const user = await User.findOne({ _id: userId });
 
         if (!user) {
             throw new Error('USER_NOT_FOUND');
-        }
-
-        return user;
-    },
-
-    /**
-     * Login user
-     * @param {Object} data
-     * @returns {Promise<*>}
-     */
-    loginUser: async (data) => {
-        const user = await User.findOne({ email: data.email });
-
-        if (!user) {
-            throw new Error('WRONG_LOGIN_PASSWORD');
-        }
-
-        const passCheck = await Password.compare(data.password, user.password);
-
-        if (!passCheck) {
-            throw new Error('WRONG_LOGIN_PASSWORD');
         }
 
         return user;

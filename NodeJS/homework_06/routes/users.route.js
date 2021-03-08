@@ -1,16 +1,19 @@
 const router = require('express').Router();
 
 const { usersController } = require('../controllers');
-const { usersMiddleware } = require('../middlewares');
+const { authMiddleware, usersMiddleware } = require('../middlewares');
 
 router.get('/', usersController.getAllUsers);
 
-router.post('/login', usersMiddleware.isLoginValid, usersController.loginUser);
-
 router.post('/create', usersMiddleware.isNewUserValid, usersController.createUser);
 
-router.delete('/:userId', usersMiddleware.isUserIdValid, usersController.deleteUser);
+// user should be authorized
+router.route('/:userId')
+    .all(authMiddleware.isAuthorized)
+    .delete(usersMiddleware.isUserIdValid, usersController.deleteUser);
 
-router.get('/:userField', usersMiddleware.isUserFieldValid, usersController.getUser);
+router.route('/:userId')
+    .all(authMiddleware.isAuthorized)
+    .get(usersMiddleware.isUserFieldValid, usersController.getUser);
 
 module.exports = router;

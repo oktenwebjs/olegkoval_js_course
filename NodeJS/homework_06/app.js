@@ -4,6 +4,8 @@ const ApiRouter = require('./routes/api.route');
 const { dbConnection } = require('./database/connections');
 const { appConfig } = require('./constants');
 
+require('dotenv').config();
+
 const app = express();
 
 // connect to DB
