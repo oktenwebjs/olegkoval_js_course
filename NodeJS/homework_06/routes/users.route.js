@@ -10,10 +10,7 @@ router.post('/create', usersMiddleware.isNewUserValid, usersController.createUse
 // user should be authorized
 router.route('/:userId')
     .all(authMiddleware.isAuthorized)
+    .get(usersMiddleware.isUserFieldValid, usersController.getUser)
     .delete(usersMiddleware.isUserIdValid, usersController.deleteUser);
-
-router.route('/:userId')
-    .all(authMiddleware.isAuthorized)
-    .get(usersMiddleware.isUserFieldValid, usersController.getUser);
 
 module.exports = router;
