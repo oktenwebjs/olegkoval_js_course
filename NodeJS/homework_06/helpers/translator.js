@@ -7,12 +7,12 @@ module.exports = {
      * @param {String} lang
      * @returns {*}
      */
-    getTranslation: (code, lang = '') => ({
+    getTranslation: (code, lang = '') => (
         // eslint-disable-next-line no-nested-ternary
-        code: messagesDictionary[code] ? (
+        messagesDictionary[code] ? (
             messagesDictionary[code][lang] || messagesDictionary[code]
         ) : (
             code.length > 0 ? code : messagesDictionary.UNKNOWN_ERROR[lang]
         )
-    })
+    )
 };

@@ -1,6 +1,7 @@
 const { Translator } = require('../helpers');
 const { httpCodes } = require('../dictionaries');
 const { userValidators } = require('../validators');
+const { ErrorWithStatus } = require('../errors');
 
 module.exports = {
     /**
@@ -44,14 +45,14 @@ module.exports = {
      * @param next
      */
     isUserIdValid: (req, res, next) => {
-        const { preferLang = 'en' } = req.body;
-
         try {
             module.exports._validate(userValidators.userIdValidator, req.params);
 
             next();
         } catch (err) {
-            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            next(
+                new ErrorWithStatus(Translator.getTranslation(err.message), httpCodes.BAD_REQUEST)
+            );
         }
     },
 
@@ -62,14 +63,14 @@ module.exports = {
      * @param next
      */
     isUserFieldValid: (req, res, next) => {
-        const { preferLang = 'en' } = req.body;
-
         try {
             module.exports._validate(userValidators.userFieldValidator, req.params);
 
             next();
         } catch (err) {
-            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            next(
+                new ErrorWithStatus(Translator.getTranslation(err.message), httpCodes.BAD_REQUEST)
+            );
         }
     },
 
@@ -80,14 +81,14 @@ module.exports = {
      * @param next
      */
     isNewUserValid: (req, res, next) => {
-        const { preferLang = 'en' } = req.body;
-
         try {
             module.exports._validate(userValidators.userCreateValidator, req.body);
 
             next();
         } catch (err) {
-            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message, preferLang));
+            next(
+                new ErrorWithStatus(Translator.getTranslation(err.message), httpCodes.BAD_REQUEST)
+            );
         }
     },
 };

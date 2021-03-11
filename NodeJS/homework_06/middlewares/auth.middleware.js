@@ -4,6 +4,7 @@ const { authValidators } = require('../validators');
 const { Auth, User } = require('../database/models');
 const { httpCodes } = require('../dictionaries');
 const { Password, Translator } = require('../helpers');
+const { ErrorWithStatus } = require('../errors');
 
 module.exports = {
     /**
@@ -85,7 +86,9 @@ module.exports = {
 
             next();
         } catch (err) {
-            res.status(httpCodes.BAD_REQUEST).json(Translator.getTranslation(err.message));
+            next(
+                new ErrorWithStatus(Translator.getTranslation(err.message), httpCodes.BAD_REQUEST)
+            );
         }
     },
 
@@ -97,7 +100,9 @@ module.exports = {
 
             next();
         } catch (err) {
-            res.status(httpCodes.UNAUTHORIZED).json(Translator.getTranslation(err.message));
+            next(
+                new ErrorWithStatus(Translator.getTranslation(err.message), httpCodes.UNAUTHORIZED)
+            );
         }
     },
 
@@ -119,7 +124,9 @@ module.exports = {
 
             next();
         } catch (err) {
-            res.status(httpCodes.UNAUTHORIZED).json(Translator.getTranslation(err.message));
+            next(
+                new ErrorWithStatus(Translator.getTranslation(err.message), httpCodes.UNAUTHORIZED)
+            );
         }
     },
 
@@ -136,7 +143,9 @@ module.exports = {
 
             next();
         } catch (err) {
-            res.status(httpCodes.UNAUTHORIZED).json(Translator.getTranslation(err.message));
+            next(
+                new ErrorWithStatus(Translator.getTranslation(err.message), httpCodes.UNAUTHORIZED)
+            );
         }
     }
 };
